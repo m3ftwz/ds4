@@ -1234,14 +1234,24 @@ No `-p` starts the interactive prompt:
 
 ```sh
 ./ds4
-ds4>
+you >
 ```
+
+The welcome screen shows the DwarfStar logo, session settings, and full command
+guide in a layout that adapts to terminal width. `--ui-logo auto` (default) uses
+an image in Ghostty/Kitty and text art elsewhere; `--ui-logo image` or
+`--ui-logo text` selects a style. Text art uses Unicode Braille with an ASCII
+fallback. Images fall back to text with `NO_COLOR`, in terminal multiplexers,
+or when unsupported. Both logo variants are embedded in the executable.
 
 The interactive CLI is a real multi-turn chat. It keeps the rendered chat
 transcript and the live graph KV checkpoint, so each turn extends the previous
-conversation. Useful commands are `/help`, `/think`, `/think-max`, `/nothink`,
-`/ctx N`, `/read FILE`, and `/quit`. Ctrl+C interrupts the current generation
-and returns to `ds4>`.
+conversation. Useful commands are `/help`, `/status`, `/think`, `/think-max`,
+`/nothink`, `/ctx N`, `/read FILE`, and `/quit`. Ctrl+C interrupts the current
+generation and returns to `you >`.
+
+Once the model is ready, interactive mode clears the terminal and draws the
+welcome screen. Redirected output and non-interactive modes are never cleared.
 
 The CLI defaults to thinking mode. Use `/nothink` or `--nothink` for direct
 answers. Models with a built-in draft block use `--mtp`; models with a separate
